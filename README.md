@@ -41,6 +41,10 @@ Install vagrant-vbguest plugin:
 
 * Latest MySQL from system repository with 'root:vagrant' superuser
 
+* Latest stable Git
+
+* NodeJS v4 LTS with npm
+
 ## License
 
 Released under the MIT License, Copyright (c) 2016 Sergey Kanukov, inspired by official [Rails dev box](https://github.com/rails/rails-dev-box).

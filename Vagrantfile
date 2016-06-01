@@ -14,6 +14,9 @@ Vagrant.configure(2) do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = 'ubuntu/xenial64'
 
+  # Forward ports
+  config.vm.network 'forwarded_port', guest: 8000, host: 8000 # Laravel port
+
   # Customize the amount of memory on the VM
   config.vm.provider 'virtualbox' do |vb|
     vb.memory = '1024'

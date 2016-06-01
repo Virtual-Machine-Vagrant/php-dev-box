@@ -14,6 +14,16 @@ function update_packages {
 }
 # End of Heper functions
 
+function set_default_mysql_root_password {
+  sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password $1"
+  sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $1"
+}
+
+function install_mysql {
+  set_default_mysql_root_password 'vagrant'
+  install 'MySQL' mysql-server
+}
+
 function install_php {
   install 'PHP7 and Laravel dependencies' php \
     php-mysql php-mbstring php-xml php-zip
@@ -31,4 +41,5 @@ function install_php_with_composer {
 }
 
 update_packages
+install_mysql
 install_php_with_composer

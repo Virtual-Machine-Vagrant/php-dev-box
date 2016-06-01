@@ -29,6 +29,8 @@ Port 8000 in the host computer is forwarded to port 8000 in the virtual machine.
 
     php artisan serve --host=0.0.0.0
 
+Don't forget to look at some helper shell scripts for newbies.
+
 ## Install recommended software
 
 Install vagrant-vbguest plugin:
@@ -37,13 +39,13 @@ Install vagrant-vbguest plugin:
 
 ## What's In The Box
 
-* Latest PHP7 from system repository with Composer
+* Latest PHP7 from system repository with latest stable Composer
 
 * Latest MySQL from system repository with 'root:vagrant' superuser
 
 * Latest stable Git
 
-* NodeJS v4 LTS with npm
+* NodeJS v4 LTS with Npm
 
 ## License
 

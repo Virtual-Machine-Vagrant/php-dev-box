@@ -43,3 +43,5 @@ function install_php_with_composer {
 update_packages
 install_mysql
 install_php_with_composer
+
+echo 'All set, rock on!'

@@ -27,5 +27,5 @@ Vagrant.configure(2) do |config|
                                keep_color: true
 
   # Sync dirs
-  config.vm.synced_folder 'code/', '/vagrant/code'
+  config.vm.synced_folder '.', '/vagrant'
 end

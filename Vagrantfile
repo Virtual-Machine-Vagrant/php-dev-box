@@ -22,4 +22,7 @@ Vagrant.configure(2) do |config|
   # Install required software
   config.vm.provision 'shell', path: 'bootstrap.sh', privileged: false,
                                keep_color: true
+
+  # Sync dirs
+  config.vm.synced_folder 'code/', '/vagrant/code'
 end

@@ -29,8 +29,10 @@ function install_requirements {
 }
 
 function set_default_mysql_root_password {
-  sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password $1"
-  sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $1"
+  sudo debconf-set-selections <<< \
+    "mysql-server mysql-server/root_password password $1"
+  sudo debconf-set-selections <<< \
+    "mysql-server mysql-server/root_password_again password $1"
 }
 
 function install_mysql {

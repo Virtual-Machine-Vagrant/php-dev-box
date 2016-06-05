@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = 'ubuntu/xenial64'
+  config.vm.box = 'ubuntu/trusty64'
 
   # Forward ports
   config.vm.network 'forwarded_port', guest: 8000, host: 8000 # Laravel port
@@ -25,7 +25,4 @@ Vagrant.configure(2) do |config|
   # Install required software
   config.vm.provision 'shell', path: 'bootstrap.sh', privileged: false,
                                keep_color: true
-
-  # Sync dirs
-  config.vm.synced_folder '.', '/vagrant'
 end

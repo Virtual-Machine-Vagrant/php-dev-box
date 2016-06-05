@@ -28,9 +28,16 @@ function install_mysql {
   install 'MySQL' mysql-server
 }
 
+function add_php_ppa {
+  install 'PHP PPA pre-requirements' python-software-properties
+  sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
+  update_packages
+}
+
 function install_php {
-  install 'PHP7 and Laravel dependencies' php \
-    php-mysql php-mbstring php-xml php-zip
+  add_php_ppa
+  install 'PHP7 and Laravel dependencies' php7.0 \
+    php7.0-mbstring php7.0-mysql php7.0-xml php7.0-zip
 }
 
 function install_composer {
@@ -44,9 +51,13 @@ function install_php_with_composer {
   install_composer
 }
 
-function install_git {
+function add_git_ppa {
   sudo add-apt-repository ppa:git-core/ppa
   update_packages
+}
+
+function install_git {
+  add_git_ppa
   install 'Git' git
 }
 
@@ -61,6 +72,7 @@ function set_node_permissions {
   npm config set prefix '~/.npm-global'
   append_to_file '' ~/.profile # insert empty line first
   append_to_file 'export PATH=~/.npm-global/bin:$PATH' ~/.profile
+  source ~/.profile
 }
 
 function install_node_and_set_permissions {
@@ -68,14 +80,10 @@ function install_node_and_set_permissions {
   set_node_permissions
 }
 
-function install_additional_soft {
-  install_git
-  install_node_and_set_permissions
-}
-
 update_packages
 install_mysql
 install_php_with_composer
-install_additional_soft
+install_git
+install_node_and_set_permissions
 
 echo 'All set, rock on!'

@@ -39,13 +39,13 @@ Install vagrant-vbguest plugin:
 
 ## What's In The Box
 
-* Latest PHP7 from system repository with latest stable Composer
+* Current stable PHP7 with Composer
 
-* Latest MySQL from system repository with 'root:vagrant' superuser
+* Current stable MySQL with 'root:vagrant' superuser
 
-* Latest stable Git
+* Current stable Git
 
-* NodeJS v4 LTS with Npm
+* Current stable NodeJS v4 LTS with Npm
 
 ## License
 

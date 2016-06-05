@@ -2,8 +2,13 @@
 # Bootstrap file for setting Laravel development environment
 
 # Heper functions
+function add_ppa {
+  sudo add-apt-repository $1
+  update_packages
+}
+
 function append_to_file {
-  echo $1 | tee -a $2
+  echo $1 | sudo tee -a $2
 }
 
 function install {
@@ -18,24 +23,24 @@ function update_packages {
 }
 # End of Heper functions
 
+function install_requirements {
+  install 'PPA pre-requirements' software-properties-common
+  sudo LC_ALL=C.UTF-8
+}
+
 function set_default_mysql_root_password {
   sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password $1"
   sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $1"
 }
 
 function install_mysql {
+  add_ppa ppa:ondrej/mysql-5.7
   set_default_mysql_root_password 'vagrant'
   install 'MySQL' mysql-server
 }
 
-function add_php_ppa {
-  install 'PHP PPA pre-requirements' python-software-properties
-  sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
-  update_packages
-}
-
 function install_php {
-  add_php_ppa
+  add_ppa ppa:ondrej/php
   install 'PHP7 and Laravel dependencies' php7.0 \
     php7.0-mbstring php7.0-mysql php7.0-xml php7.0-zip
 }
@@ -51,13 +56,8 @@ function install_php_with_composer {
   install_composer
 }
 
-function add_git_ppa {
-  sudo add-apt-repository ppa:git-core/ppa
-  update_packages
-}
-
 function install_git {
-  add_git_ppa
+  add_ppa ppa:git-core/ppa
   install 'Git' git
 }
 
@@ -81,6 +81,7 @@ function install_node_and_set_permissions {
 }
 
 update_packages
+install_requirements
 install_mysql
 install_php_with_composer
 install_git

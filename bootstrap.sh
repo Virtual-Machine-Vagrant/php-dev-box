@@ -28,7 +28,7 @@ function install_requirements {
   sudo LC_ALL=C.UTF-8
 }
 
-function set_default_mysql_root_password {
+function set_mysql_root_password {
   sudo debconf-set-selections <<< \
     "mysql-server mysql-server/root_password password $1"
   sudo debconf-set-selections <<< \
@@ -37,7 +37,7 @@ function set_default_mysql_root_password {
 
 function install_mysql {
   add_ppa ppa:ondrej/mysql-5.7
-  set_default_mysql_root_password 'vagrant'
+  set_mysql_root_password 'vagrant'
   install 'MySQL' mysql-server
 }
 
@@ -53,7 +53,7 @@ function install_composer {
     sudo php -- --install-dir=/usr/local/bin --filename=composer
 }
 
-function install_php_with_composer {
+function install_php_and_composer {
   install_php
   install_composer
 }
@@ -68,8 +68,8 @@ function install_node {
   install 'NodeJS with Npm' nodejs
 }
 
-function set_node_permissions {
-  echo 'Setting correct NodeJS permissions...'
+function set_npm_permissions {
+  echo 'Setting correct Npm permissions...'
   mkdir ~/.npm-global
   npm config set prefix '~/.npm-global'
   append_to_file '' ~/.profile # insert empty line first
@@ -77,16 +77,26 @@ function set_node_permissions {
   source ~/.profile
 }
 
-function install_node_and_set_permissions {
+function install_npm {
+  sudo npm install npm --global
+  set_npm_permissions
+}
+
+function install_node_and_npm {
   install_node
-  set_node_permissions
+  install_npm
+}
+
+function install_gulp {
+  npm install gulp --global
 }
 
 update_packages
 install_requirements
 install_mysql
-install_php_with_composer
+install_php_and_composer
 install_git
-install_node_and_set_permissions
+install_node_and_npm
+install_gulp
 
 echo 'All set, rock on!'

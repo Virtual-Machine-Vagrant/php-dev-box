@@ -15,19 +15,19 @@ A Vagrant powered virtual machine for Laravel application development
 
 Building the virtual machine is this easy:
 
-    $ git clone https://github.com/skanukov/laravel-dev-box
-    $ cd laravel-dev-box
-    $ vagrant up
+    host $ git clone https://github.com/skanukov/laravel-dev-box
+    host $ cd laravel-dev-box
+    host $ vagrant up
 
 That's it.
 
 After the installation has finished, you can access the virtual machine with
 
-    $ vagrant ssh
+    host $ vagrant ssh
 
 Port 8000 in the host computer is forwarded to port 8000 in the virtual machine. Thus, applications running in the virtual machine can be accessed via localhost:8000 in the host computer. Be sure the web server is bound to the IP 0.0.0.0, instead of 127.0.0.1, so it can access all interfaces:
 
-    php artisan serve --host=0.0.0.0
+    $ php artisan serve --host=0.0.0.0
 
 Don't forget to look at some helper shell scripts for newbies.
 
@@ -35,7 +35,7 @@ Don't forget to look at some helper shell scripts for newbies.
 
 Install vagrant-vbguest plugin:
 
-    $ vagrant plugin install vagrant-vbguest
+    host $ vagrant plugin install vagrant-vbguest
 
 ## What's In The Box
 
@@ -46,6 +46,8 @@ Install vagrant-vbguest plugin:
 * Current stable Git
 
 * Current stable NodeJS v4 LTS with Npm
+
+* Current stable Gulp installed globally
 
 ## License
 

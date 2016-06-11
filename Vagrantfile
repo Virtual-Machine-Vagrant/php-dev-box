@@ -12,14 +12,14 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = 'ubuntu/trusty64'
+  config.vm.box = 'geerlingguy/ubuntu1604'
 
   # Forward ports
   config.vm.network 'forwarded_port', guest: 8000, host: 8000 # Laravel port
 
   # Customize the amount of memory on the VM
   config.vm.provider 'virtualbox' do |vb|
-    vb.memory = '1536'
+    vb.memory = '1024'
   end
 
   # Install required software

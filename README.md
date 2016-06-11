@@ -7,10 +7,6 @@ A Vagrant powered virtual machine for Laravel application development
 
 * [Vagrant](http://vagrantup.com)
 
-## Recommended software
-
-* [Vagrant-vbguest plugin](https://github.com/dotless-de/vagrant-vbguest)
-
 ## How To Build The Virtual Machine
 
 Building the virtual machine is this easy:
@@ -31,23 +27,19 @@ Port 8000 in the host computer is forwarded to port 8000 in the virtual machine.
 
 Don't forget to look at some helper shell scripts for newbies.
 
-## Install recommended software
-
-Install vagrant-vbguest plugin:
-
-    host $ vagrant plugin install vagrant-vbguest
-
 ## What's In The Box
 
-* Current stable PHP7 with Composer
+* Ubuntu 16.04
 
-* Current stable MySQL with 'root:vagrant' superuser
+* MySQL 5.7 with 'root:vagrant' superuser
 
-* Current stable Git
+* PHP7 7.0.4 with stable Composer
 
-* Current stable NodeJS v4 LTS with Npm
+* Git 2.7.4
 
-* Current stable Gulp installed globally
+* NodeJS v4.2.6 with Npm 3.5.2
+
+* Stable Gulp installed globally
 
 ## License
 

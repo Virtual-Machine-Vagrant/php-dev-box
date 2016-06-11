@@ -17,4 +17,4 @@ A collection of Atom plugins for comfortable PHP development
 
 * [linter-php](https://atom.io/packages/linter-php) - Lint PHP on the fly, using php -l.
 
-* [linter-jshint](https://atom.io/packages/linter-jshint) - Linter plugin for JavaScript, using jshint.
+* [linter-eslint](https://atom.io/packages/linter-eslint) - Lint JavaScript on the fly, using ESLint.

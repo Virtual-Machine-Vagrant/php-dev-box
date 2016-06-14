@@ -2,13 +2,8 @@
 # Bootstrap file for setting Laravel development environment
 
 # Heper functions
-function add_ppa {
-  sudo add-apt-repository $1
-  update_packages
-}
-
 function append_to_file {
-  echo $1 | sudo tee -a $2
+  echo $1 >> $2
 }
 
 function install {
@@ -21,13 +16,12 @@ function update_packages {
   echo 'Updating package information...'
   sudo apt-get -y update
 }
-
-function upgrade_packages {
-  echo 'Updating installed packages...'
-  update_packages
-  sudo apt-get -y dist-upgrade
-}
 # End of Heper functions
+
+function install_dependencies {
+  sudo update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
+  install 'Git' git
+}
 
 function set_mysql_root_password {
   sudo debconf-set-selections <<< \
@@ -57,10 +51,6 @@ function install_php_and_composer {
   install_composer
 }
 
-function install_git {
-  install 'Git' git
-}
-
 function create_node_symlink {
   sudo ln -s /usr/bin/nodejs /usr/bin/node
 }
@@ -74,7 +64,6 @@ function set_npm_permissions {
   echo 'Setting correct Npm permissions...'
   mkdir ~/.npm-global
   npm config set prefix '~/.npm-global'
-  append_to_file '' ~/.profile # insert empty line first
   append_to_file 'export PATH=~/.npm-global/bin:$PATH' ~/.profile
   source ~/.profile
 }
@@ -95,9 +84,9 @@ function install_gulp {
 }
 
 update_packages
+install_dependencies
 install_mysql
 install_php_and_composer
-install_git
 install_node_and_npm
 install_gulp
 

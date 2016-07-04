@@ -3,7 +3,7 @@
 
 # Heper functions
 function append_to_file {
-  echo $1 >> $2
+  echo "$1" >> "$2"
 }
 
 function install {

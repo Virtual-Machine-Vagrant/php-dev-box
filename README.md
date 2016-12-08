@@ -33,13 +33,13 @@ Don't forget to look at some helper shell scripts for newbies.
 
 * MySQL 5.7 with 'root:vagrant' superuser
 
-* PHP7 7.0.4 with stable Composer
+* PHP7 7.0.8 with stable Composer
 
-* Git 2.7.4
+* Git 2.10
 
-* NodeJS v4.2.6 with Npm 3.5.2
+* NodeJS v6.9 LTS with Npm v3.10
 
-* Stable Gulp installed globally
+* Stable stable Gulp installed globally
 
 ## License
 

@@ -12,17 +12,31 @@ function install {
   sudo apt-get -y install "$@"
 }
 
+function add_repository {
+  sudo add-apt-repository "$1"
+}
+
 function update_packages {
   echo 'Updating package information...'
   sudo apt-get -y update
 }
 # End of Heper functions
 
-function install_dependencies {
-  sudo update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
+# Dependencies
+function install_git {
+  add_repository ppa:git-core/ppa
+  update_packages
   install 'Git' git
 }
 
+function install_dependencies {
+  sudo update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
+
+  install_git
+}
+# Enf of Dependencies
+
+# MySQL
 function set_mysql_root_password {
   sudo debconf-set-selections <<< \
     "mysql-server mysql-server/root_password password $1"
@@ -34,7 +48,9 @@ function install_mysql {
   set_mysql_root_password 'vagrant'
   install 'MySQL' mysql-server
 }
+# End of MySQL
 
+# PHP7
 function install_php {
   install 'PHP7 and Laravel dependencies' php7.0 \
     php7.0-mbstring php7.0-mysql php7.0-xml php7.0-zip
@@ -50,14 +66,12 @@ function install_php_and_composer {
   install_php
   install_composer
 }
+# End of PHP7
 
-function create_node_symlink {
-  sudo ln -s /usr/bin/nodejs /usr/bin/node
-}
-
+# NodeJS
 function install_node {
+  curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
   install 'NodeJS' nodejs
-  create_node_symlink
 }
 
 function set_npm_permissions {
@@ -68,26 +82,23 @@ function set_npm_permissions {
   source ~/.profile
 }
 
-function install_npm {
-  install 'Npm' npm
-  set_npm_permissions
-}
-
 function install_node_and_npm {
   install_node
-  install_npm
+  set_npm_permissions
 }
+# End of NodeJS
 
 function install_gulp {
   echo 'Installing Gulp...'
-  npm install gulp --global
+  npm install --global gulp
 }
 
-update_packages
+
 install_dependencies
 install_mysql
 install_php_and_composer
 install_node_and_npm
 install_gulp
+
 
 echo 'All set, rock on!'

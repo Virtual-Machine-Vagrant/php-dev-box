@@ -35,11 +35,9 @@ Don't forget to look at some helper shell scripts for newbies.
 
 * PHP7 7.0.8 with stable Composer
 
-* Git 2.10
-
 * NodeJS v6.9 LTS with Npm v3.10
 
-* Stable stable Gulp installed globally
+* Git 2.7.4
 
 ## License
 

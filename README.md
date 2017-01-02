@@ -1,5 +1,5 @@
-# laravel-dev-box
-A Vagrant powered virtual machine for Laravel application development
+# php-dev-box
+A Vagrant powered virtual machine for PHP application development
 
 ## Requirements
 
@@ -11,8 +11,8 @@ A Vagrant powered virtual machine for Laravel application development
 
 Building the virtual machine is this easy:
 
-    host $ git clone https://github.com/skanukov/laravel-dev-box
-    host $ cd laravel-dev-box
+    host $ git clone https://github.com/skanukov/php-dev-box
+    host $ cd php-dev-box
     host $ vagrant up
 
 That's it.

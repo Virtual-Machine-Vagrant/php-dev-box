@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
-# Bootstrap file for setting Laravel development environment
+# Bootstrap file for setting PHP development environment
 
 # Heper functions
 function append_to_file {
-  echo "$1" >> "$2"
+  echo "$1" | sudo tee -a "$2"
+}
+
+function replace_in_file {
+  sudo sed -i "$1" "$2"
 }
 
 function install {
@@ -50,7 +54,7 @@ function install_mysql {
 }
 # End of MySQL
 
-# PHP7
+# PHP 7.1
 function install_php {
   add_repository ppa:ondrej/php
 
@@ -68,27 +72,35 @@ function install_php_and_composer {
   install_php
   install_composer
 }
-# End of PHP7
+# End of PHP 7.1
 
-# NodeJS
+# NodeJS and Yarn
 function install_node {
   curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+  update_packages
   install 'NodeJS' nodejs
 }
 
-function set_npm_permissions {
-  echo 'Setting correct Npm permissions...'
-  mkdir ~/.npm-global
-  npm config set prefix '~/.npm-global'
-  append_to_file 'export PATH=~/.npm-global/bin:$PATH' ~/.profile
+function add_yarn_to_path {
+  append_to_file 'export PATH="$PATH:`yarn global bin`"' ~/.profile
   source ~/.profile
 }
 
-function install_node_and_npm {
-  install_node
-  set_npm_permissions
+function install_yarn {
+  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+  append_to_file "deb https://dl.yarnpkg.com/debian/ stable main" \
+    /etc/apt/sources.list.d/yarn.list
+  update_packages
+  install 'Yarn' yarn
+
+  add_yarn_to_path
 }
-# End of NodeJS
+
+function install_node_and_yarn {
+  install_node
+  install_yarn
+}
+# End of NodeJS and Yarn
 
 
 update_packages

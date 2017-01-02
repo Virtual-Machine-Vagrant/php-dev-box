@@ -37,6 +37,8 @@ Don't forget to look at some helper shell scripts for newbies.
 
 * NodeJS v6.9 LTS with Npm v3.10
 
+* Lates stable Yarn
+
 * Latest stable Git
 
 ## License

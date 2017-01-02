@@ -12,21 +12,27 @@ function install {
   sudo apt-get -y install "$@"
 }
 
-function add_repository {
-  sudo add-apt-repository "$1"
-}
-
 function update_packages {
   echo 'Updating package information...'
   sudo apt-get -y update
 }
+
+function add_repository {
+  sudo add-apt-repository "$1"
+  update_packages
+}
 # End of Heper functions
 
 # Dependencies
+function install_git {
+  add_repository ppa:git-core/ppa
+  install 'Git' git
+}
+
 function install_dependencies {
   sudo update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
-  install 'Git' git
+  install_git
 }
 # Enf of Dependencies
 
@@ -46,8 +52,10 @@ function install_mysql {
 
 # PHP7
 function install_php {
-  install 'PHP7 and Laravel dependencies' php7.0 \
-    php7.0-mbstring php7.0-mysql php7.0-xml php7.0-zip
+  add_repository ppa:ondrej/php
+
+  install 'PHP7 and dependencies' php7.1 \
+    php7.1-mbstring php7.1-mysql php7.1-xml php7.1-zip # Laravel deps
 }
 
 function install_composer {

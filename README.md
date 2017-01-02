@@ -33,11 +33,11 @@ Don't forget to look at some helper shell scripts for newbies.
 
 * MySQL 5.7 with 'root:vagrant' superuser
 
-* PHP7 7.0.8 with stable Composer
+* PHP7 7.1 with latest stable Composer
 
 * NodeJS v6.9 LTS with Npm v3.10
 
-* Git 2.7.4
+* Latest stable Git
 
 ## License
 

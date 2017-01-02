@@ -107,7 +107,7 @@ update_packages
 install_dependencies
 install_mysql
 install_php_and_composer
-install_node_and_npm
+install_node_and_yarn
 
 
 echo 'All set, rock on!'
